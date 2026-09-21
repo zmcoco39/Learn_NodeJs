@@ -11,6 +11,7 @@ router.get('/', async (req, res, next) => {
       ? { username: new RegExp(keyword, 'i') } // 按用户名模糊搜索
       : {};
 
+    // const total = await User.countDocuments(filter);
     const total = await User.countDocuments(filter);
     const list = await User.find(filter)
       .select('-password') // 不返回密码字段
