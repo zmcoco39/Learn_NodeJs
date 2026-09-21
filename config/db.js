@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/admin_system';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/learn_nodejs';
 
 // 连接 MongoDB
 async function connectDB() {
