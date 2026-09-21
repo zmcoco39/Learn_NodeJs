@@ -1,5 +1,8 @@
 const express = require('express');
 const User = require('../models/User');
+const { sign } = require('../utils/token');
+const auth = require('../middleware/auth');
+const requireRole = require('../middleware/requireRole');
 
 const router = express.Router();
 
@@ -11,7 +14,6 @@ router.get('/', async (req, res, next) => {
       ? { username: new RegExp(keyword, 'i') } // 按用户名模糊搜索
       : {};
 
-    // const total = await User.countDocuments(filter);
     const total = await User.countDocuments(filter);
     const list = await User.find(filter)
       .select('-password') // 不返回密码字段
@@ -69,8 +71,8 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// DELETE /api/users/:id  删除
-router.delete('/:id', async (req, res, next) => {
+// DELETE /api/users/:id  删除（仅 admin）
+router.delete('/:id', auth, requireRole('admin'), async (req, res, next) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user) return res.fail('用户不存在', 404);

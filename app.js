@@ -13,6 +13,7 @@ app.use(require('./middleware/response')); // 挂载统一响应格式
 app.get('/', (req, res) => {
   res.json({ code: 0, message: '后台管理系统 API 运行中 🚀' });
 });
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/products', require('./routes/products'));
 
