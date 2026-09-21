@@ -1,0 +1,15 @@
+{
+  "name": "admin-system",
+  "version": "1.0.0",
+  "description": "Node.js 学习项目：后台管理系统（Express + MongoDB）",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "dev": "node --watch app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  }
+}
