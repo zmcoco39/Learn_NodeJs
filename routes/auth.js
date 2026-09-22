@@ -15,7 +15,13 @@ router.post('/login', async (req, res, next) => {
     if (user.status === 0) return res.fail('账号已被禁用', 403);
 
     const token = sign(user);
-    res.success({ token, user: { _id: user._id, username: user.username, nickname: user.nickname, role: user.role } }, '登录成功');
+    res.success(
+      {
+        token,
+        user: { _id: user._id, username: user.username, nickname: user.nickname, role: user.role },
+      },
+      '登录成功'
+    );
   } catch (err) {
     next(err);
   }

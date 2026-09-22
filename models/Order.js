@@ -9,7 +9,11 @@ const orderSchema = new mongoose.Schema(
     items: [
       {
         // 订单明细（一个订单多个商品）
-        product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }, // 关联 Product
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product',
+          required: true,
+        }, // 关联 Product
         name: { type: String, required: true }, // 下单时的商品快照名
         price: { type: Number, required: true, min: 0 }, // 下单时的商品快照价
         quantity: { type: Number, required: true, min: 1 }, // 数量
